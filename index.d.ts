@@ -4,11 +4,9 @@ declare module "./config" {
   }
 
   export function getConfig(): Config;
-  export function setConfig(options: Partial<Config>): void;
 }
 
-export function makePostRequest(url: string, apiKey?: string, data?: object): Promise<any>;
+declare const SERVER_URL: string;
 
-export function getFirstQuery(actionId: string): Promise<any>;
-
-export function getLLMResponse(actionId: string, context: string, query: string, userAnswer: string): Promise<any>;
+export declare function createChat(actionId: string): Promise<any>;
+export declare function getLLMResponse(chatId: string, answer: string): Promise<any>;
