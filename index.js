@@ -1,6 +1,14 @@
-import { getConfig, setConfig } from "./config";
+let sdkConfig = {
+  apiKey: null,
+};
 
-export const config = setConfig;
+function getConfig() {
+  return sdkConfig;
+}
+
+export function config(options) {
+  sdkConfig = { ...sdkConfig, ...options };
+}
 
 const SERVER_URL = "https://api-persista.onrender.com/api/v1/sdk";
 

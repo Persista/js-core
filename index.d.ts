@@ -1,12 +1,9 @@
-declare module "./config" {
-  interface Config {
-    apiKey: string | null;
-  }
-
-  export function getConfig(): Config;
+interface Config {
+  apiKey: string | null;
 }
 
-declare const SERVER_URL: string;
+export declare function config(options: Partial<Config>): void;
 
 export declare function createChat(actionId: string): Promise<any>;
+
 export declare function getLLMResponse(chatId: string, answer: string): Promise<any>;
