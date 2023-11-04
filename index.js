@@ -1,4 +1,6 @@
-import { getConfig } from "./config";
+import { getConfig, setConfig } from "./config";
+
+export const config = setConfig;
 
 async function makePostRequest(url, apiKey = "", data = {}) {
   var jsonData = JSON.stringify(data);
