@@ -23,13 +23,14 @@ export async function getFirstQuery(actionId) {
   return res;
 }
 
-export async function getLLMResponse(actionId, context, query) {
+export async function getLLMResponse(actionId, context, query, userAnswer) {
   const { apiKey } = getConfig();
 
   const res = await makePostRequest("", apiKey, {
     actionId,
     context,
     query,
+    userAnswer,
   });
 
   return res;
