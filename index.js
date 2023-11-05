@@ -1,19 +1,18 @@
 const SERVER_URL = "https://api-persista.onrender.com/api/v1/sdk";
 
 async function makePostRequest(path, apiKey = "", data = {}) {
-  var jsonData = JSON.stringify(data);
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", SERVER_URL + path, true);
-  xhr.setRequestHeader("Content-Type", "application/json");
-  xhr.setRequestHeader("Authorization", apiKey);
-
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      var response = JSON.parse(xhr.responseText);
-      return response;
-    }
+  let res = await fetch(`${SERVER_URL}${path}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: apiKey,
+    },
+    body: JSON.stringify(data),
+  });
+  res = await res.json();
+  return {
+    data: res.message,
   };
-  xhr.send(jsonData);
 }
 
 export async function createChat(actionId, apiKey) {
