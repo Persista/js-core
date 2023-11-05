@@ -1,15 +1,3 @@
-let sdkConfig = {
-  apiKey: null,
-};
-
-function getConfig() {
-  return sdkConfig;
-}
-
-export function config(options) {
-  sdkConfig = { ...sdkConfig, ...options };
-}
-
 const SERVER_URL = "https://api-persista.onrender.com/api/v1/sdk";
 
 async function makePostRequest(path, apiKey = "", data = {}) {
@@ -28,9 +16,7 @@ async function makePostRequest(path, apiKey = "", data = {}) {
   xhr.send(jsonData);
 }
 
-export async function createChat(actionId) {
-  const { apiKey } = getConfig();
-
+export async function createChat(actionId, apiKey) {
   if (!apiKey) {
     throw new Error("API Key is missing! Please configure the SDK using config() method.");
   }
@@ -39,9 +25,7 @@ export async function createChat(actionId) {
   return res;
 }
 
-export async function getLLMResponse(chatId, answer) {
-  const { apiKey } = getConfig();
-
+export async function getLLMResponse(chatId, answer, apiKey) {
   if (!apiKey) {
     throw new Error("API Key is missing! Please configure the SDK using config() method.");
   }
